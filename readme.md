@@ -65,3 +65,4 @@ We should be in directory, which contains *Dockerfile*, or we must specify path 
 `docker start container_name` will start existing container. This time we don't need to specify publish ports, because it was declared when we created new container
 
 ## Layer caching
+Every time we build image, docker stores information about each layers in the cache. When we start build process again, docker look to the cache and will build only from changed layer. So this build time will be reduced. 
