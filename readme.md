@@ -84,3 +84,25 @@ To link docker container with our project structure on local computer, we can us
 There can be problem if we remove node_modules from project repository, because it will be also removed from docker container. To avoid this, we can add anonimous volume for node_modules directory.
 
 `docker run --name node_server_c -p 4000:4000 --rm -v /Users/mariannociar/JS/node/docker:/app -v /app/node_modules node_server_img:nodemon`
+
+## Dicker Compose
+Hold all docker configuration for multiple projects. 
+
+```
+version: "3.8"
+services: 
+  api:
+    build: ./backend
+    container_name: node_c
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./api:/app
+      - ./app/node_modules
+```
+
+`docker-compose up` - build and run containers based on docker-compose file. Much simpler for multiple containers.
+
+`docker-compose down --rmi all -v` stop running containers
+- --rmi all : remove all images
+- -v : remove all volumes
